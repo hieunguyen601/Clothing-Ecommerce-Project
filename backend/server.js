@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import User from "./Model/User.js";
 import authMiddleware from "./authMiddleware.js";
 import jwt from "jsonwebtoken";
-import { readFile } from "node:fs/promises";
+import Product from "./Model/Products.js";
 
 dotenv.config();
 
@@ -91,12 +91,8 @@ app.post("/api/signin", async (req, res) => {
 
 app.get("/api/products", async (req, res) => {
   try {
-    const file = await readFile(
-      new URl("./data/products.json", import.meta.url),
-      "utf-8",
-    );
-    const data = await JSON.parse(file);
-    res.json(data);
+    const result = await Product.find();
+    res.status(200).json(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Failed to load products." });
