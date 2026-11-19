@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import User from "./Model/User.js";
 import authMiddleware from "./authMiddleware.js";
 import jwt from "jsonwebtoken";
+import { readFile } from "node:fs/promises";
 
 dotenv.config();
 
@@ -22,7 +23,6 @@ app.post("/api/signup", async (req, res) => {
         message: "Required filling information",
       });
     }
-
 
     const saltRounds = 12;
     const hashed_Password = await bcrypt.hash(password, saltRounds);
@@ -89,6 +89,19 @@ app.post("/api/signin", async (req, res) => {
   }
 });
 
+app.get("/api/products", async (req, res) => {
+  try {
+    const file = await readFile(
+      new URl("./data/products.json", import.meta.url),
+      "utf-8",
+    );
+    const data = await JSON.parse(file);
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to load products." });
+  }
+});
 
 async function startServer() {
   try {
