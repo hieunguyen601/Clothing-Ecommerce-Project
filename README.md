@@ -39,7 +39,7 @@ A full-stack fashion e-commerce website built with **React, TypeScript, Express.
 - Postman
   
 **Author**
-- HENRY HIEU NGUYEN (SENIOR COMPUTER SCIENCE AT THE UNIVERSITY OF HOUSTON).
+- HENRY HIEU NGUYEN (SENIOR COMPUTER SCIENCE STUDENT AT THE UNIVERSITY OF HOUSTON).
 
 ## Project Status
 
